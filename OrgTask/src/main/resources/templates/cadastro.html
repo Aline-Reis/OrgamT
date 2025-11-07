@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organt — Cadastro</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body class="container">
+<div class="card">
+    <h1>Criar conta</h1>
+    <form th:action="@{/signup}" method="post" class="grid">
+        <input name="nome" placeholder="Nome completo" required>
+        <input name="emailCpf" placeholder="E-mail ou CPF" required>
+        <input name="senha" type="password" placeholder="Senha" required autocomplete="new-password">
+        <button class="primary">Cadastrar</button>
+    </form>
+    <a th:href="@{/login}">Já tenho conta</a>
+    <p th:text="${err}" class="err"></p>
+    <p th:text="${ok}"></p>
+</div>
+</body>
+</html>

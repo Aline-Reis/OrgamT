@@ -1,0 +1,59 @@
+<!doctype html>
+</head>
+<body>
+<header class="topbar">
+    <strong>Organt</strong>
+    <div>
+        <span th:text="'Olá, ' + ${usuario.nome}"></span>
+        <a th:href="@{/logout}" class="link">Sair</a>
+    </div>
+</header>
+
+
+<main class="container">
+    <section class="card">
+        <h2>Nova Tarefa</h2>
+        <form th:action="@{/tarefas}" method="post" class="grid">
+            <input name="titulo" placeholder="Título" required>
+            <input name="prazo" type="date">
+            <select name="prioridade" th:each="p : ${prioridades}" th:value="${p}" th:text="${p}"></select>
+            <select name="status" th:each="s : ${statuses}" th:value="${s}" th:text="${s}"></select>
+            <textarea name="descricao" placeholder="Descrição"></textarea>
+            <button class="primary">Adicionar</button>
+        </form>
+    </section>
+
+
+    <section class="card">
+        <h2>Minhas Tarefas</h2>
+        <ul class="list" th:if="${#lists.isEmpty(tarefas)} == false">
+            <li th:each="t : ${tarefas}" class="item">
+                <div class="row">
+                    <strong th:text="${t.titulo}"></strong>
+                    <small>
+                        <span th:text="${t.prioridade}"></span> ·
+                        <span th:text="${t.status}"></span> ·
+                        <span th:text="${t.prazo}">Sem prazo</span>
+                    </small>
+                </div>
+                <p th:text="${t.descricao}"></p>
+                <div class="row">
+                    <form th:action="@{|/tarefas/${t.id}/status|}" method="post">
+                        <select name="s">
+                            <option>ABERTA</option>
+                            <option>ANDAMENTO</option>
+                            <option>CONCLUIDA</option>
+                        </select>
+                        <button>Alterar</button>
+                    </form>
+                    <form th:action="@{|/tarefas/${t.id}/delete|}" method="post">
+                        <button class="danger">Excluir</button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+        <p th:if="${#lists.isEmpty(tarefas)}">Você ainda não tem tarefas.</p>
+    </section>
+</main>
+</body>
+</html>

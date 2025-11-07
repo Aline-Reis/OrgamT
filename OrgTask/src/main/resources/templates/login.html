@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organt — Login</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body class="container">
+<div class="card">
+    <h1>Bem-vindo ao <span class="brand">Organt</span></h1>
+    <form th:action="@{/login}" method="post" class="grid">
+        <input name="username" placeholder="E-mail ou CPF" required>
+        <input name="password" type="password" placeholder="Senha" required autocomplete="current-password">
+        <button class="primary">Entrar</button>
+    </form>
+    <a th:href="@{/cadastro}">Criar conta</a>
+    <p th:if="${param.error}" class="err">Credenciais inválidas</p>
+    <p th:if="${param.logout}">Você saiu.</p>
+</div>
+</body>
+</html>
