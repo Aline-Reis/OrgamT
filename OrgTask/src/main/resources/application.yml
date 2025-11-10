@@ -1,36 +1,42 @@
 spring:
-datasource:
-url: jdbc:h2:mem:organt;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-driver-class-name: org.h2.Driver
-username: sa
-password: ''
-h2:
-console:
-enabled: true
-path: /h2
-jpa:
-hibernate:
-ddl-auto: update
-properties:
-hibernate.format_sql: true
-hibernate.jdbc.time_zone: UTC
-thymeleaf:
-cache: false
+  datasource:
+    url: jdbc:h2:mem:organt;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ''
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.format_sql: true
+      hibernate.jdbc.time_zone: UTC
+  thymeleaf:
+    cache: false
+
+  #  cache + encadeamento de recursos estáticos (com hash de conteúdo)
+  web:
+    resources:
+      cache:
+        cachecontrol:
+          max-age: 365d
+          public: true
+      chain:
+        enabled: true
+        strategy:
+          content:
+            enabled: true
+            paths:
+              - /**
 
 server:
-error:
-include-message: always
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,application/javascript,application/json,image/svg+xml
+    min-response-size: 1024
 
-# Exemplo de profile p/ Postgres (prod):
-# ---
-# spring:
-# config:
-# activate:
-# on-profile: prod
-# datasource:
-# url: jdbc:postgresql://localhost:5432/organt
-# username: organt
-# password: organt
-# jpa:
-# hibernate:
-# ddl-auto: update
+error:
+  include-message: always

@@ -1,0 +1,39 @@
+/* Botão Voltar bem discreto, ícone-only, canto superior esquerdo */
+.back-btn{
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 50;
+
+    /* tamanho compacto */
+    width: 36px;
+    height: 36px;
+    padding: 0;
+
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+
+    background: rgba(255,255,255,0.92);
+    border: 1px solid var(--line, #e5e7eb);
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    text-decoration: none;
+}
+
+/* desenha a seta via CSS (sem precisar de imagem) */
+.back-btn::before{
+    content: "←";
+    font-size: 18px;
+    line-height: 1;
+    color: var(--ink, #222);
+}
+
+/* feedback sutil */
+.back-btn:hover{ filter: brightness(0.98); transform: translateX(-1px); }
+.back-btn:active{ transform: translateX(-2px); }
+
+/* ainda menor em telas pequenas */
+@media (max-width: 480px){
+    .back-btn{ top: 10px; left: 10px; width: 32px; height: 32px; }
+    .back-btn::before{ font-size: 16px; }
+}

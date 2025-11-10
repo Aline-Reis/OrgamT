@@ -1,0 +1,265 @@
+:root {
+    --pink: #c00478;
+    --ink: #222;
+    --muted: #6b7280;
+    --bg: #fff;
+    --line: #e5e7eb;
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    font: 16px/1.4 system-ui, Segoe UI, Roboto;
+    color: var(--ink);
+    background: #fafafa
+}
+
+.container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 24px
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    background: #fff;
+    position: sticky;
+    top: 0
+}
+
+.brand {
+    color: var(--pink)
+}
+
+.card {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px;
+    margin: 16px 0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .04)
+}
+
+.grid {
+    display: grid;
+    gap: 10px
+}
+
+input, select, textarea, button {
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 12px
+}
+
+button.primary {
+    background: var(--pink);
+    color: #fff;
+    border: none
+}
+
+button.danger {
+    background: #ef4444;
+    color: #fff;
+    border: none
+}
+
+.link {
+    color: var(--pink);
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+
+.item {
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    margin: 8px 0
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.err {
+    color: #b91c1c
+}
+/* ===== Landing (tela inicial) ===== */
+.landing{
+    min-height: 100dvh;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 24px 20px 40px;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    justify-items: center;
+    align-content: start;
+    text-align: center;
+}
+.landing-logo{
+    height: clamp(100px, 20vw, 100px); /* maior e responsivo */
+    margin-top: 12px;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+@media (max-width: 480px){
+    .landing-logo{ height: 72px; }      /* antes era 42/48px */
+    .landing-subtitle{ margin-top: 20px; }
+}
+
+.landing-subtitle{
+    font-size: clamp(4.4rem, 3.2vw, 2.2rem); /* escala de ~22px a ~35px */
+    line-height: 1.2;
+    font-weight: 500;
+    color: var(--pink, #c00478);
+}
+
+.landing-hero-img{
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+.landing .card{
+    border: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+/* Botões reutilizáveis (escopados para a landing para não conflitar com o login) */
+.landing .btn{
+    display: inline-block;
+    padding: 12px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line, #e5e7eb);
+    text-decoration: none;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+}
+.landing .btn-block{ width: 100%; }
+.landing .btn-primary{ background: var(--pink, #f472b6); color: #fff; border-color: transparent; }
+.landing .btn-outline{ background: #fff; color: var(--pink, #f472b6); border-color: var(--pink, #f472b6); }
+
+/* Pequenos ajustes responsivos */
+@media (max-width: 480px){
+    .landing-logo{ height: 42px; }
+}
+.landing-actions{
+    width: min(420px, 92vw);
+    display: grid;
+    gap: 16px;        /* espaço entre os botões */
+    margin-top: 8px;  /* espaço acima do grupo */
+}
+/* Centraliza o card no meio da tela (vertical e horizontal) */
+.auth{
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    padding: 24px; /* mantém respiro lateral em mobile */
+}
+
+/* Largura responsiva do card */
+.auth-card{
+    width: min(720px, 92vw);
+}
+
+/* Título centralizado e responsivo */
+.auth-title{
+    text-align: center;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    margin: 0 0 16px;
+}
+
+/* Inputs e botão ocupam a largura toda */
+.btn-block{ width: 100%; }
+.grid input, .grid button{ width: 100%; }
+
+/* Afasta o link 'Criar conta' do botão 'Entrar' */
+.create-link{
+    display: inline-block;
+    margin-top: 16px;
+}
+
+/* Ajustes finos em telas pequenas */
+@media (max-width: 480px){
+    .auth-card{ padding: 14px; border-radius: 14px; }
+}
+/* Logo do login  */
+.auth-logo{
+    display: block;
+    height: clamp(48px, 8vw, 80px); /* cresce conforme a tela */
+    width: auto;
+    margin: 4px auto 10px;          /* espaço abaixo da logo */
+}
+
+/* Já existentes (para referência) */
+.auth{
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+}
+.auth-card{ width: min(720px, 92vw); }
+.auth-title{
+    text-align: center;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    margin: 0 0 16px;
+}
+.btn-block{ width: 100%; }
+.create-link{ display:inline-block; margin-top: 16px; }
+
+@media (max-width: 480px){
+    .auth-card{ padding: 14px; border-radius: 14px; }
+}
+/* Botão Voltar bem discreto, ícone-only, canto superior esquerdo */
+.back-btn{
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 50;
+
+    /* tamanho compacto */
+    width: 36px;
+    height: 36px;
+    padding: 0;
+
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+
+    background: rgba(255,255,255,0.92);
+    border: 1px solid var(--line, #e5e7eb);
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    text-decoration: none;
+}
+
+/* desenha a seta via CSS (sem precisar de imagem) */
+.back-btn::before{
+    content: "←";
+    font-size: 18px;
+    line-height: 1;
+    color: var(--ink, #222);
+}
+
+/* feedback sutil */
+.back-btn:hover{ filter: brightness(0.98); transform: translateX(-1px); }
+.back-btn:active{ transform: translateX(-2px); }
+
+/* ainda menor em telas pequenas */
+@media (max-width: 480px){
+    .back-btn{ top: 10px; left: 10px; width: 32px; height: 32px; }
+    .back-btn::before{ font-size: 16px; }
+}

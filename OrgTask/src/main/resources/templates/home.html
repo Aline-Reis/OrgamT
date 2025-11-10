@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>OrgamT</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+ <section class="landing">
+     <img th:src="@{/images/logo.png}" alt="Logo OrgamT" class="landing-logo">
+     <p class="landing-subtitle">Gerêncie suas tarefas.</p>
+
+     <img th:src="@{/images/logoSimples.png}" alt="Logo Simples OrgamT" class="landing-hero-img">
+
+     <div class="landing-actions">
+         <a th:href="@{/login}" class="btn btn-primary btn-block">Entrar</a>
+         <a th:href="@{/cadastro}" class="btn btn-outline btn-block">Criar conta</a>
+     </div>
+
+ </section>
+</body>
+</html>

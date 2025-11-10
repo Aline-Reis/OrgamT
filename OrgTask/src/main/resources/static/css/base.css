@@ -1,0 +1,18 @@
+:root {
+    --pink: #c00478;
+    --ink: #222;
+    --muted: #6b7280;
+    --bg: #fff;
+    --line: #e5e7eb;
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    font: 20px/1.4 system-ui, Segoe UI, Roboto;
+    color: var(--ink);
+    background: #fafafa
+}

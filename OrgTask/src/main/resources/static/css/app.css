@@ -1,16 +1,6 @@
-:root{--pink:#f472b6;--ink:#222;--muted:#6b7280;--bg:#fff;--line:#e5e7eb;}
-*{box-sizing:border-box}
-body{margin:0;font:16px/1.4 system-ui,Segoe UI,Roboto;color:var(--ink);background:#fafafa}
-.container{max-width:860px;margin:0 auto;padding:24px}
-.topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0}
-.brand{color:var(--pink)}
-.card{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:16px;margin:16px 0;box-shadow:0 1px 2px rgba(0,0,0,.04)}
-.grid{display:grid;gap:10px}
-input,select,textarea,button{padding:10px;border:1px solid var(--line);border-radius:12px}
-button.primary{background:var(--pink);color:#fff;border:none}
-button.danger{background:#ef4444;color:#fff;border:none}
-.link{color:var(--pink);}
-.list{list-style:none;padding:0;margin:0}
-.item{padding:10px;border:1px solid var(--line);border-radius:12px;margin:8px 0}
-.row{display:flex;justify-content:space-between;align-items:center}
-.err{color:#b91c1c}
+/* app.css —  */
+@import url("/css/base.css");
+@import url("/css/components.css");
+@import url("/css/landing.css");
+@import url("/css/auth.css");
+@import url("/css/back-btn.css");

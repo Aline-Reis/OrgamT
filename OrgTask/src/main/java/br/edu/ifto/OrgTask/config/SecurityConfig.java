@@ -33,7 +33,8 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/css/**","/js/**","/login","/cadastro","/signup","/h2/**").permitAll()
+                        // permitir recursos estáticos, páginas públicas e a página inicial ("/")
+                        .requestMatchers("/","/css/**","/js/**","/images/**", "/login","/cadastro","/signup","/h2/**").permitAll()
                         .anyRequest().authenticated())
                 .headers(h -> h.frameOptions(f -> f.disable())) // permite H2 console
                 .formLogin(f -> f

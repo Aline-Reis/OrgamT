@@ -3,21 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Organt — Cadastro</title>
+
     <link rel="stylesheet" th:href="@{/css/app.css}">
+
 </head>
-<body class="container">
-<div class="card">
-    <h1>Criar conta</h1>
-    <form th:action="@{/signup}" method="post" class="grid">
-        <input name="nome" placeholder="Nome completo" required>
-        <input name="emailCpf" placeholder="E-mail ou CPF" required>
-        <input name="senha" type="password" placeholder="Senha" required autocomplete="new-password">
-        <button class="primary">Cadastrar</button>
+
+<body class="container auth">
+
+<a th:href="@{/}" id="backBtn" class="back-btn" aria-label="Voltar" title="Voltar"></a>
+
+<div class="card auth-card">
+
+    <img src="/images/logo.png" th:src="@{/images/logo.png}" alt="Organt" class="auth-logo">
+
+    <h1 class="auth-title">Criar conta</h1>
+
+    <form th:action="@{/cadastro}" method="post" class="grid">
+        <input name="nome" placeholder="Nome completo" required autocomplete="name">
+        <input name="username" placeholder="E-mail ou CPF" required autocomplete="username">
+        <input th:data="date" placeholder="Data de nascimento" autocomplete="birthday">
+        <input name="password" type="password" placeholder="Senha" required autocomplete="new-password">
+        <button class="primary btn-block" type="submit">Cadastrar</button>
     </form>
-    <a th:href="@{/login}">Já tenho conta</a>
-    <p th:text="${err}" class="err"></p>
-    <p th:text="${ok}"></p>
+
+    <a th:href="@{/login}" class="link create-link">Já tenho conta</a>
 </div>
+
+<script src="/js/login.js" th:src="@{/js/login.js}" defer></script>
 </body>
 </html>

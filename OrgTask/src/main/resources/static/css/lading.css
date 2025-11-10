@@ -1,0 +1,62 @@
+/* (login/cadastro)
+Centraliza o card no meio da tela (vertical e horizontal) */
+.auth{
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    padding: 24px; /* mantém respiro lateral em mobile */
+}
+
+/* Largura responsiva do card */
+.auth-card{
+    width: min(720px, 92vw);
+}
+
+/* Título centralizado e responsivo */
+.auth-title{
+    text-align: center;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    margin: 0 0 16px;
+}
+
+/* Inputs e botão ocupam a largura toda */
+.btn-block{ width: 100%; }
+.grid input, .grid button{ width: 100%; }
+
+/* Afasta o link 'Criar conta' do botão 'Entrar' */
+.create-link{
+    display: inline-block;
+    margin-top: 16px;
+}
+
+/* Ajustes finos em telas pequenas */
+@media (max-width: 480px){
+    .auth-card{ padding: 14px; border-radius: 14px; }
+}
+/* Logo do login  */
+.auth-logo{
+    display: block;
+    height: clamp(48px, 8vw, 80px); /* cresce conforme a tela */
+    width: auto;
+    margin: 4px auto 10px;          /* espaço abaixo da logo */
+}
+
+/* Já existentes (para referência) */
+.auth{
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+}
+.auth-card{ width: min(720px, 92vw); }
+.auth-title{
+    text-align: center;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    margin: 0 0 16px;
+}
+.btn-block{ width: 100%; }
+.create-link{ display:inline-block; margin-top: 16px; }
+
+@media (max-width: 480px){
+    .auth-card{ padding: 14px; border-radius: 14px; }
+}
