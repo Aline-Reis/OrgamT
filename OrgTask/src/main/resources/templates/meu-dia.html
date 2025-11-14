@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Organt — Meu dia</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+</head>
+<body>
+
+<header class="topbar">
+    <a th:href="@{/estatisticas}" class="link" aria-label="Estatísticas" title="Estatísticas">📊</a>
+    <div class="user-name" th:text="${nome}">Usuário</div>
+    <a th:href="@{/perfil}" class="avatar" aria-label="Perfil" title="Perfil">👤</a>
+</header>
+
+<main class="dash">
+    <h1 class="hero-title">Meu dia <span class="sun" aria-hidden="true">☀️</span></h1>
+    <img th:src="@{/images/logo.png}" alt="Organt" class="hero-logo">
+    <div class="hero-icon" aria-hidden="true">📅</div>
+    <p class="hero-subtitle">“Organize seu dia em segundos.”</p>
+
+    <div class="dash-cta">
+        <!-- mantenha o que você já usava -->
+        <a th:href="@{/tarefas(nova=1)}" class="btn btn-outline">+ Nova tarefa</a>
+        <!-- ou, se preferir modal, troque por: data-action="open-modal" data-modal-target="#taskModal" -->
+    </div>
+</main>
+
+<script src="/js/ui-buttons.js" defer></script>
+</body>
+</html>

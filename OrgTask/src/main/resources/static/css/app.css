@@ -1,6 +1,6 @@
 /* app.css —  */
-@import url("/css/base.css");
-@import url("/css/components.css");
-@import url("/css/landing.css");
-@import url("/css/auth.css");
-@import url("/css/back-btn.css");
+@import url("base.css");
+@import url("components.css");
+@import url("lading.css");
+@import url("auth.css");
+@import url("back-btn.css");

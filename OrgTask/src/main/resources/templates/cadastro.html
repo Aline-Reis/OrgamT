@@ -10,20 +10,18 @@
 
 </head>
 
-<body class="container auth">
-
+<body class="container auth auth--header">
 <a th:href="@{/}" id="backBtn" class="back-btn" aria-label="Voltar" title="Voltar"></a>
 
-<div class="card auth-card">
+<div class="card auth-card flat">
 
     <img src="/images/logo.png" th:src="@{/images/logo.png}" alt="Organt" class="auth-logo">
-
+    <div class="auth-line"></div>
     <h1 class="auth-title">Criar conta</h1>
 
     <form th:action="@{/cadastro}" method="post" class="grid">
         <input name="nome" placeholder="Nome completo" required autocomplete="name">
         <input name="username" placeholder="E-mail ou CPF" required autocomplete="username">
-        <input th:data="date" placeholder="Data de nascimento" autocomplete="birthday">
         <input name="password" type="password" placeholder="Senha" required autocomplete="new-password">
         <button class="primary btn-block" type="submit">Cadastrar</button>
     </form>

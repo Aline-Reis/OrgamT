@@ -1,59 +1,72 @@
 <!doctype html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Organt — Criar Tarefa</title>
+
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <link rel="stylesheet" th:href="@{/css/task-create.css}">
 </head>
-<body>
-<header class="topbar">
-    <strong>Organt</strong>
-    <div>
-        <span th:text="'Olá, ' + ${usuario.nome}"></span>
-        <a th:href="@{/logout}" class="link">Sair</a>
-    </div>
+<body class="tc-page">
+
+<header class="tc-header">
+    <a th:href="@{/meu-dia}" class="tc-back" aria-label="Voltar" title="Voltar">‹</a>
+    <h1 class="tc-title">Criar Tarefas</h1>
 </header>
 
+<main class="tc-main">
+    <form th:action="@{/tarefas}" method="post" class="tc-form">
 
-<main class="container">
-    <section class="card">
-        <h2>Nova Tarefa</h2>
-        <form th:action="@{/tarefas}" method="post" class="grid">
-            <input name="titulo" placeholder="Título" required>
-            <input name="prazo" type="date">
-            <select name="prioridade" th:each="p : ${prioridades}" th:value="${p}" th:text="${p}"></select>
-            <select name="status" th:each="s : ${statuses}" th:value="${s}" th:text="${s}"></select>
-            <textarea name="descricao" placeholder="Descrição"></textarea>
-            <button class="primary">Adicionar</button>
-        </form>
-    </section>
+        <!-- TÍTULO -->
+        <div class="tc-field">
+            <span class="tc-label">Título</span>
+            <input
+                    id="titulo"
+                    name="titulo"
+                    class="tc-input"
+                    type="text"
+                    placeholder="Título da tarefa"
+                    required>
+        </div>
 
+        <!-- PRIORIDADE -->
+        <div class="tc-field">
+            <span class="tc-label">Prioridade</span>
+            <select name="prioridade" class="tc-input" aria-label="Prioridade">
+                <option th:each="p : ${prioridades}"
+                        th:value="${p}"
+                        th:text="${p}">
+                    PRIORIDADE
+                </option>
+            </select>
+        </div>
 
-    <section class="card">
-        <h2>Minhas Tarefas</h2>
-        <ul class="list" th:if="${#lists.isEmpty(tarefas)} == false">
-            <li th:each="t : ${tarefas}" class="item">
-                <div class="row">
-                    <strong th:text="${t.titulo}"></strong>
-                    <small>
-                        <span th:text="${t.prioridade}"></span> ·
-                        <span th:text="${t.status}"></span> ·
-                        <span th:text="${t.prazo}">Sem prazo</span>
-                    </small>
-                </div>
-                <p th:text="${t.descricao}"></p>
-                <div class="row">
-                    <form th:action="@{|/tarefas/${t.id}/status|}" method="post">
-                        <select name="s">
-                            <option>ABERTA</option>
-                            <option>ANDAMENTO</option>
-                            <option>CONCLUIDA</option>
-                        </select>
-                        <button>Alterar</button>
-                    </form>
-                    <form th:action="@{|/tarefas/${t.id}/delete|}" method="post">
-                        <button class="danger">Excluir</button>
-                    </form>
-                </div>
-            </li>
-        </ul>
-        <p th:if="${#lists.isEmpty(tarefas)}">Você ainda não tem tarefas.</p>
-    </section>
+        <!-- DATA INÍCIO -->
+        <div class="tc-field">
+            <span class="tc-label">Data de início</span>
+            <input
+                    id="dataInicio"
+                    name="dataInicio"
+                    class="tc-input"
+                    type="date">
+        </div>
+
+        <!-- DATA FIM -->
+        <div class="tc-field">
+            <span class="tc-label">Data de término</span>
+            <input
+                    id="dataFim"
+                    name="dataFim"
+                    class="tc-input"
+                    type="date">
+        </div>
+
+        <!-- BOTÃO SALVAR -->
+        <button type="submit" class="tc-btn">Salvar</button>
+    </form>
 </main>
+
+<script src="/js/ui-buttons.js" defer></script>
 </body>
 </html>

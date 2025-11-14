@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>OrgamT — Login</title>
-    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <link rel="stylesheet" href="/css/app.css" th:href="@{/css/app.css}" type="text/css">
 
 </head>
-
-<body class="container auth">
+<body class="container auth auth--header">
 <div class="card auth-card">
     <img src="/images/logo.png"
          th:src="@{/images/logo.png}"
          alt="Organt" class="auth-logo">
+    <div class="auth-line"></div>
 
     <h1 class="auth-title">Bem-vindo ao <span class="brand">Organt</span></h1>
 

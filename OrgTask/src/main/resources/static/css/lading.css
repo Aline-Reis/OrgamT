@@ -1,62 +1,91 @@
-/* (login/cadastro)
-Centraliza o card no meio da tela (vertical e horizontal) */
-.auth{
-    min-height: 100dvh;
-    display: grid;
-    place-items: center;
-    padding: 24px; /* mantém respiro lateral em mobile */
-}
+.landing {
+    min-height: 100svh;
 
-/* Largura responsiva do card */
-.auth-card{
-    width: min(720px, 92vw);
-}
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-/* Título centralizado e responsivo */
-.auth-title{
-    text-align: center;
-    font-size: clamp(1.6rem, 4vw, 2.4rem);
-    margin: 0 0 16px;
-}
+    width: min(860px, 92vw);
+    margin-inline: auto;
 
-/* Inputs e botão ocupam a largura toda */
-.btn-block{ width: 100%; }
-.grid input, .grid button{ width: 100%; }
-
-/* Afasta o link 'Criar conta' do botão 'Entrar' */
-.create-link{
-    display: inline-block;
-    margin-top: 16px;
-}
-
-/* Ajustes finos em telas pequenas */
-@media (max-width: 480px){
-    .auth-card{ padding: 14px; border-radius: 14px; }
-}
-/* Logo do login  */
-.auth-logo{
-    display: block;
-    height: clamp(48px, 8vw, 80px); /* cresce conforme a tela */
-    width: auto;
-    margin: 4px auto 10px;          /* espaço abaixo da logo */
-}
-
-/* Já existentes (para referência) */
-.auth{
-    min-height: 100dvh;
-    display: grid;
-    place-items: center;
     padding: 24px;
-}
-.auth-card{ width: min(720px, 92vw); }
-.auth-title{
     text-align: center;
-    font-size: clamp(1.6rem, 4vw, 2.4rem);
-    margin: 0 0 16px;
 }
-.btn-block{ width: 100%; }
-.create-link{ display:inline-block; margin-top: 16px; }
 
-@media (max-width: 480px){
-    .auth-card{ padding: 14px; border-radius: 14px; }
+/* fallback para navegadores sem svh */
+@supports not (height: 100svh) {
+    .landing {
+        min-height: 100dvh;
+    }
+}
+
+/* Logo do topo */
+.landing-logo {
+    display: block;
+    margin: 0 auto 10px;
+    width: clamp(100px, 20vw, 150px);
+    height: auto;
+}
+
+/* Subtítulo */
+.landing-subtitle {
+    font-size: clamp(2.2rem, 5vw, 4.6rem);
+    color: var(--muted, #000000);
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+/* Imagem/ícone central*/
+.landing-hero-image {
+    width: clamp(160px, 40vw, 240px);
+    height: auto;
+    margin-bottom: 40px;
+}
+
+/* Bloco de ações */
+.landing-actions {
+    width: min(420px, 92vw);
+    display: grid;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.landing-actions .btn {
+    padding: 12px 20px;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    transition: background-color .2s ease, transform .2s ease;
+}
+
+.landing-actions .btn-primary {
+    background-color: var(--pink, #c00478);
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 10px rgba(192, 4, 120, 0.3);
+}
+
+.landing-actions .btn-outline {
+    background-color: transparent;
+    color: var(--pink, #c00478);
+    border: 1px solid var(--pink, #c00478);
+}
+
+.landing-actions .btn-primary:hover {
+    background-color: #a00360;
+    transform: translateY(-1px);
+}
+
+.landing-actions .btn-outline:hover {
+    background-color: var(--pink, #c00478);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.landing .btn-block {
+    width: 100%;
 }
