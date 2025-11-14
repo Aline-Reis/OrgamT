@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Organt — Criar Tarefa</title>
+
+    <!-- CSS principal da aplicação -->
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <!-- CSS específico da tela de criação de tarefa -->
+    <link rel="stylesheet" th:href="@{/css/task-create.css}">
+</head>
+<body class="tc-page">
+
+<header class="tc-header">
+    <!-- Botão voltar: volta para "Meu dia" (e o JS ainda pode tratar histórico) -->
+    <a th:href="@{/meu-dia}" class="tc-back" aria-label="Voltar" title="Voltar">‹</a>
+    <h1 class="tc-title">Criar Tarefas</h1>
+</header>
+
+<main class="tc-main">
+    <!-- Envia para POST /tarefas -->
+    <form th:action="@{/tarefas}" method="post" class="tc-form">
+
+        <!-- TÍTULO -->
+        <div class="tc-field">
+            <span class="tc-label">Título</span>
+            <input
+                    id="titulo"
+                    name="titulo"
+                    class="tc-input"
+                    type="text"
+                    placeholder="Título da tarefa"
+                    required>
+        </div>
+
+        <!-- PRIORIDADE -->
+        <div class="tc-field">
+            <span class="tc-label">Prioridade</span>
+            <select name="prioridade" class="tc-input" aria-label="Prioridade">
+                <option th:each="p : ${prioridades}"
+                        th:value="${p}"
+                        th:text="${p}">
+                    PRIORIDADE
+                </option>
+            </select>
+        </div>
+
+        <!-- DATA INÍCIO -->
+        <div class="tc-field">
+            <span class="tc-label">Data de início</span>
+            <input
+                    id="dataInicio"
+                    name="dataInicio"
+                    class="tc-input"
+                    type="date">
+        </div>
+
+        <!-- DATA FIM -->
+        <div class="tc-field">
+            <span class="tc-label">Data de término</span>
+            <input
+                    id="dataFim"
+                    name="dataFim"
+                    class="tc-input"
+                    type="date">
+        </div>
+
+        <button type="submit" class="tc-btn">Salvar</button>
+    </form>
+</main>
+
+<script src="/js/ui-buttons.js" th:src="@{/js/ui-buttons.js}" defer></script>
+</body>
+</html>

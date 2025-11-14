@@ -3,68 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Organt — Criar Tarefa</title>
-
+    <title>Organt — Meu dia</title>
     <link rel="stylesheet" th:href="@{/css/app.css}">
-    <link rel="stylesheet" th:href="@{/css/task-create.css}">
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
 </head>
-<body class="tc-page">
+<body>
 
-<header class="tc-header">
-    <a th:href="@{/meu-dia}" class="tc-back" aria-label="Voltar" title="Voltar">‹</a>
-    <h1 class="tc-title">Criar Tarefas</h1>
+<header class="topbar">
+    <a th:href="@{/estatisticas}" class="link" aria-label="Estatísticas" title="Estatísticas">📊</a>
+    <div class="user-name" th:text="${nome}">Usuário</div>
+    <a th:href="@{/perfil}" class="avatar" aria-label="Perfil" title="Perfil">👤</a>
 </header>
 
-<main class="tc-main">
-    <form th:action="@{/tarefas}" method="post" class="tc-form">
+<main class="dash">
+    <h1 class="hero-title">
+        Meu dia <span class="sun" aria-hidden="true">☀️</span>
+    </h1>
+    <img th:src="@{/images/logo.png}" alt="Organt" class="hero-logo">
+    <div class="hero-icon" aria-hidden="true">📅</div>
 
-        <!-- TÍTULO -->
-        <div class="tc-field">
-            <span class="tc-label">Título</span>
-            <input
-                    id="titulo"
-                    name="titulo"
-                    class="tc-input"
-                    type="text"
-                    placeholder="Título da tarefa"
-                    required>
+    <!-- Subtítulo -->
+    <p class="hero-subtitle">
+        “Organize seu dia em segundos.”
+    </p>
+
+    <!-- Botão para criar nova tarefa -->
+    <div class="dash-cta">
+        <a th:href="@{/tarefas(nova=1)}" class="btn btn-outline">+ Nova tarefa</a>
+    </div>
+
+    <!-- ===== NOVO BLOCO: Tarefas marcadas para hoje ===== -->
+    <section class="card" style="width: min(860px, 92vw); margin-top: 18px;">
+        <div class="row" style="margin-bottom: 8px;">
+            <h2 style="font-size:1.1rem; margin:0;">
+                Tarefas de hoje
+            </h2>
+            <!-- data de hoje (opcional) -->
+            <span style="font-size:0.9rem; color:#6b7280;"
+                  th:text="${#temporals.format(hoje, 'dd/MM/yyyy')}">
+                00/00/0000
+            </span>
         </div>
 
-        <!-- PRIORIDADE -->
-        <div class="tc-field">
-            <span class="tc-label">Prioridade</span>
-            <select name="prioridade" class="tc-input" aria-label="Prioridade">
-                <option th:each="p : ${prioridades}"
-                        th:value="${p}"
-                        th:text="${p}">
-                    PRIORIDADE
-                </option>
-            </select>
-        </div>
+        <!-- Se não tiver tarefas para hoje -->
+        <p th:if="${#lists.isEmpty(tarefasHoje)}"
+           style="font-size:0.95rem; color:#6b7280; margin: 4px 0 0;">
+            Você não tem tarefas marcadas para hoje. ✨
+        </p>
 
-        <!-- DATA INÍCIO -->
-        <div class="tc-field">
-            <span class="tc-label">Data de início</span>
-            <input
-                    id="dataInicio"
-                    name="dataInicio"
-                    class="tc-input"
-                    type="date">
-        </div>
+        <!-- Lista de tarefas de hoje -->
+        <ul class="list" th:if="${!#lists.isEmpty(tarefasHoje)}">
+            <li class="item" th:each="t : ${tarefasHoje}">
+                <div class="row">
+                    <div>
+                        <!-- título -->
+                        <strong th:text="${t.titulo}">Título da tarefa</strong>
 
-        <!-- DATA FIM -->
-        <div class="tc-field">
-            <span class="tc-label">Data de término</span>
-            <input
-                    id="dataFim"
-                    name="dataFim"
-                    class="tc-input"
-                    type="date">
-        </div>
+                        <div style="font-size:0.9rem; margin-top:4px;">
+                            <!-- Prioridade -->
+                            <span>
+                                Prioridade:
+                                <span th:text="${t.prioridade}">MEDIA</span>
+                            </span>
 
-        <!-- BOTÃO SALVAR -->
-        <button type="submit" class="tc-btn">Salvar</button>
-    </form>
+                            <span> · </span>
+
+                            <!-- Status -->
+                            <span>
+                                Status:
+                                <span th:text="${t.status}">ABERTA</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- ação rápida: ir para a tela de tarefas completa -->
+                    <div>
+                        <a th:href="@{/tarefas}"
+                           class="btn btn-primary"
+                           style="padding-inline:14px; font-size:0.85rem;">
+                            Ver todas
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </section>
+
 </main>
 
 <script src="/js/ui-buttons.js" defer></script>

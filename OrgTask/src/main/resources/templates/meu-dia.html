@@ -21,10 +21,45 @@
     <div class="hero-icon" aria-hidden="true">📅</div>
     <p class="hero-subtitle">“Organize seu dia em segundos.”</p>
 
+    <!--  Lista de tarefas do dia-->
+    <section class="card" style="width: min(860px, 92vw); text-align:left; margin-top: 8px;">
+        <div class="row" style="margin-bottom: 6px;">
+            <h2 style="font-size:1.1rem; margin:0;">
+                Tarefas de hoje
+            </h2>
+            <span style="font-size:0.9rem; color:#6b7280;"
+                  th:text="${#temporals.format(hoje, 'dd/MM/yyyy')}">
+                00/00/0000
+            </span>
+        </div>
+
+        <!-- Se não houver tarefas -->
+        <p th:if="${#lists.isEmpty(tarefasHoje)}"
+           style="font-size:0.95rem; color:#6b7280; margin:0;">
+            Você não tem tarefas marcadas para hoje. ✨
+        </p>
+
+        <!-- Se houver tarefas -->
+        <ul class="list" th:if="${!#lists.isEmpty(tarefasHoje)}">
+            <li class="item" th:each="t : ${tarefasHoje}">
+                <strong th:text="${t.titulo}">Título da tarefa</strong>
+                <div style="font-size:0.9rem; margin-top:4px;">
+                    <span>
+                        Prioridade:
+                        <span th:text="${t.prioridade}">MEDIA</span>
+                    </span>
+                    <span> · </span>
+                    <span>
+                        Status:
+                        <span th:text="${t.status}">ABERTA</span>
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </section>
+
     <div class="dash-cta">
-        <!-- mantenha o que você já usava -->
-        <a th:href="@{/tarefas(nova=1)}" class="btn btn-outline">+ Nova tarefa</a>
-        <!-- ou, se preferir modal, troque por: data-action="open-modal" data-modal-target="#taskModal" -->
+        <a th:href="@{/criar-tarefa}" class="btn btn-outline">+ Nova tarefa</a>
     </div>
 </main>
 
