@@ -12,7 +12,7 @@ O objetivo é gerenciar tarefas de forma simples e intuitiva, permitindo **adici
 ---
 
 ## 🎨 Wireframe
-![OrgTask0.1.1.png](src/main/resources/static/images/OrgTask0.1.1.png)
+![OrgTask0.1.1.png](OrgTask/src/main/resources/static/images/OrgTask0.1.1.png)
 
 A interface do app foi baseada no wireframe inicial, definindo telas de:  
 Landing page, Login, Cadastro, Meu Dia, Criar Tarefa e Listar Tarefas.
