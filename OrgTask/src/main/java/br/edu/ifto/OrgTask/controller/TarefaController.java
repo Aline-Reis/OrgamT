@@ -27,7 +27,8 @@ public class TarefaController {
 
     // pega o usuário logado a partir do e-mail/CPF (username)
     private Usuario atual(Authentication auth) {
-        return usuarios.findByEmailCpf(auth.getName()).orElseThrow();
+        return usuarios.findByEmailCpf(auth.getName())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado na sessão"));
     }
 
     // LISTA DE TAREFAS (tarefas.html)
@@ -52,43 +53,23 @@ public class TarefaController {
         LocalDate hoje = LocalDate.now();
         model.addAttribute("hoje", hoje);
         model.addAttribute("tarefasHoje",
-                tarefas.findByDonoIdAndPrazoOrderByPrazoAsc(u.getId(), hoje));
+                tarefas.findTarefasPendentesAteHoje(u.getId(), hoje));
 
         return "criar-tarefa";
     }
 
     // SALVAR NOVA TAREFA (POST /tarefas)
     @PostMapping("/tarefas")
-    public String criar(@RequestParam String titulo,
-                        @RequestParam(name = "dataFim", required = false)
-                        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate prazo,
-                        @RequestParam(required = false) Prioridade prioridade,
-                        @RequestParam(required = false) Status status,
-                        @RequestParam(required = false) String descricao,
-                        Authentication auth) {
-
+    public String criar(Tarefa tarefa, Authentication auth) {
         Usuario u = atual(auth);
-
-        Tarefa t = new Tarefa();
-        t.setDono(u);
-        t.setTitulo(titulo);
-        t.setDescricao(descricao);
-
-        if (prazo != null) {
-            t.setPrazo(prazo); // usa "Data de término" como prazo
-        }
-        if (prioridade != null) {
-            t.setPrioridade(prioridade);
-        }
-        if (status != null) {
-            t.setStatus(status);
-        }
-
-        tarefas.save(t);
+        tarefa.setDono(u);
+        if (tarefa.getStatus() == null) tarefa.setStatus(Status.ABERTA);
+        if (tarefa.getPrioridade() == null) tarefa.setPrioridade(Prioridade.MEDIA);
+        tarefas.save(tarefa);
         return "redirect:/tarefas";
     }
 
-    // MUDAR STATUS (continua como estava)
+    // MUDAR STATUS
     @PostMapping("/tarefas/{id}/status")
     public String mudarStatus(@PathVariable Long id, @RequestParam("s") Status s) {
         tarefas.findById(id).ifPresent(t -> {
@@ -98,7 +79,7 @@ public class TarefaController {
         return "redirect:/tarefas";
     }
 
-    // EXCLUIR TAREFA (continua como estava)
+    // EXCLUIR TAREFA
     @PostMapping("/tarefas/{id}/delete")
     public String excluir(@PathVariable Long id) {
         tarefas.deleteById(id);

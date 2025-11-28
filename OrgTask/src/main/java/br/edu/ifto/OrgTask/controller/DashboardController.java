@@ -29,7 +29,6 @@ public class DashboardController {
         String username = (auth != null && auth.isAuthenticated())
                 ? auth.getName()
                 : null;
-
         Usuario u = null;
         if (username != null) {
             u = usuarios.findByEmailCpf(username).orElse(null);
@@ -46,7 +45,7 @@ public class DashboardController {
         // Tarefas marcadas para hoje
         List<Tarefa> tarefasHoje;
         if (u != null) {
-            tarefasHoje = tarefas.findByDonoIdAndPrazoOrderByPrazoAsc(u.getId(), hoje);
+            tarefasHoje = tarefas.findTarefasPendentesAteHoje(u.getId(), hoje);
         } else {
             tarefasHoje = List.of();
         }

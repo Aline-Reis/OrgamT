@@ -19,57 +19,30 @@
 </header>
 
 <main class="tc-main">
-    <!-- Envia para POST /tarefas -->
     <form th:action="@{/tarefas}" method="post" class="tc-form">
 
-        <!-- TÍTULO -->
         <div class="tc-field">
             <span class="tc-label">Título</span>
-            <input
-                    id="titulo"
-                    name="titulo"
-                    class="tc-input"
-                    type="text"
-                    placeholder="Título da tarefa"
-                    required>
+            <input id="titulo" name="titulo" class="tc-input" type="text" placeholder="Título da tarefa" required>
         </div>
 
-        <!-- PRIORIDADE -->
         <div class="tc-field">
             <span class="tc-label">Prioridade</span>
-            <select name="prioridade" class="tc-input" aria-label="Prioridade">
-                <option th:each="p : ${prioridades}"
-                        th:value="${p}"
-                        th:text="${p}">
-                    PRIORIDADE
-                </option>
+            <select name="prioridade" class="tc-input">
+                <option th:each="p : ${prioridades}" th:value="${p}" th:text="${p}">PRIORIDADE</option>
             </select>
         </div>
 
-        <!-- DATA INÍCIO -->
         <div class="tc-field">
-            <span class="tc-label">Data de início</span>
-            <input
-                    id="dataInicio"
-                    name="dataInicio"
-                    class="tc-input"
-                    type="date">
+            <span class="tc-label">Data de entrega</span>
+            <input id="prazo" name="prazo" class="tc-input" type="date">
         </div>
 
-        <!-- DATA FIM -->
         <div class="tc-field">
-            <span class="tc-label">Data de término</span>
-            <input
-                    id="dataFim"
-                    name="dataFim"
-                    class="tc-input"
-                    type="date">
+            <span class="tc-label">Descrição (Opcional)</span>
+            <textarea name="descricao" class="tc-input" rows="3"></textarea>
         </div>
 
         <button type="submit" class="tc-btn">Salvar</button>
     </form>
 </main>
-
-<script src="/js/ui-buttons.js" th:src="@{/js/ui-buttons.js}" defer></script>
-</body>
-</html>
